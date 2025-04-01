@@ -14,5 +14,5 @@ paramsStruct = load(paramsStructFile);
 
 params = struct(...
     'Hyperparameters',paramsStruct.Hyperparameters,...
-    'Weights',bert.internal.createParameterStruct(paramsStruct.Weights));
+    'Weights',bertv2.internal.createParameterStruct(paramsStruct.Weights));
 end

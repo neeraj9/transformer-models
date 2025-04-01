@@ -19,7 +19,7 @@ x = padsequences(seqs,2,'PaddingValue',mdl.Tokenizer.FullTokenizer.encode(mdl.To
 maskCode = mdl.Tokenizer.FullTokenizer.encode(mdl.Tokenizer.MaskToken);
 ismask = x==maskCode;
 x = dlarray(x);
-probs = bert.languageModel(x,mdl.Parameters);
+probs = bertv2.languageModel(x,mdl.Parameters);
 maskedProbs = extractdata(probs(:,ismask));
 [~,sampleIdx] = max(maskedProbs,[],1);
 predictedTokens = mdl.Tokenizer.FullTokenizer.decode(sampleIdx);

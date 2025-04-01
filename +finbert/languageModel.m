@@ -9,5 +9,5 @@ function z = languageModel(x,params)
 %   trained to predict a reasonable word for each masked input token.
 
 % Copyright 2021 The MathWorks, Inc.
-z = bert.languageModel(x,params);
+z = bertv2.languageModel(x,params);
 end

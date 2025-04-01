@@ -60,7 +60,7 @@ X{1}
 % To get the predictions scores from for the encoded tokens, evaluate the
 % FinBERT language model directly using the |bert.languageModel| function.
 % The language model output is a VocabularySize-by-SequenceLength array.
-scores = bert.languageModel(X{1},mdl.Parameters);
+scores = bertv2.languageModel(X{1},mdl.Parameters);
 
 %%
 % View the tokens of the FinBERT model vocabulary corresponding to the top

@@ -7,7 +7,7 @@ arguments
     name (1,1) string
 end
 modelName = userInputToSupportFileName(name);
-bertBaseLocation = "bertv2";
+bertBaseLocation = "bert";
 if contains(name,"japanese")
     bertBaseLocation = "ja_" + bertBaseLocation;
 end

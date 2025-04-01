@@ -14,8 +14,8 @@ if ~isfield(p.Weights,'classifier')
     error("finbert:sentimentAnalysis:NoClassifier","Parameters do not include classifier weights");
 end
 
-z = bert.model(x,p);
-y = bert.layer.classifierHead(z,p.Weights.pooler,p.Weights.classifier);
+z = bertv2.model(x,p);
+y = bertv2.layer.classifierHead(z,p.Weights.pooler,p.Weights.classifier);
 logits = softmax(y,'DataFormat','CB');
 [~,clf_i] = max(extractdata(logits));
 classes = ["positive","negative","neutral"];
