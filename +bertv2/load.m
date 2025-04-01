@@ -9,11 +9,11 @@ arguments
     modelName (1,1) string
 end
 
-% the URLs don't have bert- at the start.
-paramsStructFile = bert.internal.getSupportFilePath(modelName,"parameters.mat");
+% the URLs don't have bertv2- at the start.
+paramsStructFile = bertv2.internal.getSupportFilePath(modelName,"parameters.mat");
 paramsStruct = load(paramsStructFile);
 
 params = struct(...
     'Hyperparameters',paramsStruct.Hyperparameters,...
-    'Weights',bert.internal.createParameterStruct(paramsStruct.Weights));
+    'Weights',bertv2.internal.createParameterStruct(paramsStruct.Weights));
 end

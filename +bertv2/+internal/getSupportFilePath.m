@@ -8,7 +8,7 @@ arguments
     modelName (1,1) string
     fileName (1,1) string
 end
-directory = bert.internal.convertModelNameToDirectories(modelName);
+directory = bertv2.internal.convertModelNameToDirectories(modelName);
 sd = matlab.internal.examples.utils.getSupportFileDir();
 localFile = fullfile(sd,"nnet",directory{:},fileName);
 if exist(localFile,'file')~=2

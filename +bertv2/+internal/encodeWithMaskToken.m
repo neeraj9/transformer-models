@@ -4,7 +4,7 @@ function [x,untokenizedPieces,ismask] = encodeWithMaskToken(tok,str)
 
 % Copyright 2021 The MathWorks, Inc.
 arguments
-    tok bert.tokenizer.BERTTokenizer
+    tok bertv2.tokenizer.BERTTokenizer
     str (1,:) string
 end
 [seqs,untokenizedPieces] = arrayfun(@(s)encodeScalarString(tok,s),str,'UniformOutput',false);

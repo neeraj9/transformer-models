@@ -1,4 +1,4 @@
-classdef BasicTokenizer < bert.tokenizer.internal.Tokenizer
+classdef BasicTokenizer < bertv2.tokenizer.internal.Tokenizer
     % BasicTokenizer   Perform basic tokenization.
     
     % Copyright 2020-2023 The MathWorks, Inc.
@@ -8,7 +8,7 @@ classdef BasicTokenizer < bert.tokenizer.internal.Tokenizer
     end
     
     properties(Constant,Access=private)
-        WhiteSpaceTokenizer = bert.tokenizer.internal.WhitespaceTokenizer()
+        WhiteSpaceTokenizer = bertv2.tokenizer.internal.WhitespaceTokenizer()
     end
     
     methods
@@ -27,7 +27,7 @@ classdef BasicTokenizer < bert.tokenizer.internal.Tokenizer
         
         function tokens = tokenize(this,text)
             arguments
-                this (1,1) bert.tokenizer.internal.BasicTokenizer
+                this (1,1) bertv2.tokenizer.internal.BasicTokenizer
                 text (1,:) string
             end
             tokens = cell(1,numel(string));

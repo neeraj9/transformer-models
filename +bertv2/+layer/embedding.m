@@ -7,7 +7,7 @@ function  z = embedding(x,types,positions,w,dropout)
 %   token positions. Inputs X, types and positions are 
 %   1-by-numInputTokens-by-numObs unformatted dlarray-s. The types take
 %   values 1 or 2. The weights input is a struct of embedding weights such
-%   as mdl.Parameters.Weights.embeddings where mdl = bert(). The
+%   as mdl.Parameters.Weights.embeddings where mdl = bertv2(). The
 %   dropoutProbability is a scalar double between 0 and 1 corresponding to
 %   the post-embedding dropout probability.
 

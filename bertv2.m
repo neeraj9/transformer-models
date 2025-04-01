@@ -1,9 +1,9 @@
-function mdl = bert(nvp)
-% bert   Pretrained BERT transformer model
-%   mdl = bert loads a pretrained BERT-Base model and downloads the model
+function mdl = bertv2(nvp)
+% bertv2   Pretrained BERT transformer model
+%   mdl = bertv2 loads a pretrained BERT-Base model and downloads the model
 %   weights and vocab file if necessary.
 %
-%   mdl = bert('Model', modelName) loads the BERT model specified by
+%   mdl = bertv2('Model', modelName) loads the BERT model specified by
 %   modelName.  Supported values for modelName are "base" (default),
 %   "multilingual-cased","medium","small","mini", "tiny", "japanese-base", 
 %   and "japanese-base-wwm"
@@ -28,29 +28,29 @@ switch nvp.Model
         mdl = iJapaneseBERTModel("japanese-base-wwm", "bert-base-japanese-whole-word-masking.zip");
     otherwise
         % Download the license file
-        bert.internal.getSupportFilePath(nvp.Model,"bert.RIGHTS");
-        params = bert.load(nvp.Model);
+        bertv2.internal.getSupportFilePath(nvp.Model,"bert.RIGHTS");
+        params = bertv2.load(nvp.Model);
         % Get the IgnoreCase hyperparameter, then remove it, downstream code
         % shouldn't need it.
         ignoreCase = params.Hyperparameters.IgnoreCase;
         % Get vocab file
-        vocabFile = bert.internal.getSupportFilePath(nvp.Model,"vocab.txt");
+        vocabFile = bertv2.internal.getSupportFilePath(nvp.Model,"vocab.txt");
         params.Hyperparameters = rmfield(params.Hyperparameters,'IgnoreCase');
         mdl = struct(...
-            'Tokenizer',bert.tokenizer.BERTTokenizer(vocabFile,'IgnoreCase',ignoreCase),...
+            'Tokenizer',bertv2.tokenizer.BERTTokenizer(vocabFile,'IgnoreCase',ignoreCase),...
             'Parameters',params);
 end
 end
 
 function mdl = iJapaneseBERTModel(modelName, zipFileName)
-zipFilePath = bert.internal.getSupportFilePath(modelName, zipFileName);
+zipFilePath = bertv2.internal.getSupportFilePath(modelName, zipFileName);
 modelDir = fullfile(fileparts(zipFilePath), replace(zipFileName, ".zip", ""));      
 unzip(zipFilePath, modelDir);
 % Build the tokenizer
-btok = bert.tokenizer.internal.TokenizedDocumentTokenizer("Language","ja","TokenizeMethod","mecab",IgnoreCase=false);
+btok = bertv2.tokenizer.internal.TokenizedDocumentTokenizer("Language","ja","TokenizeMethod","mecab",IgnoreCase=false);
 vocabFile = fullfile(modelDir, "vocab.txt");
-ftok = bert.tokenizer.internal.FullTokenizer(vocabFile,BasicTokenizer=btok);
-tok = bert.tokenizer.BERTTokenizer(vocabFile,FullTokenizer=ftok);
+ftok = bertv2.tokenizer.internal.FullTokenizer(vocabFile,BasicTokenizer=btok);
+tok = bertv2.tokenizer.BERTTokenizer(vocabFile,FullTokenizer=ftok);
 % Build the model
 params.Weights = load(fullfile(modelDir, "weights.mat"));
 params.Weights = dlupdate(@dlarray,params.Weights);

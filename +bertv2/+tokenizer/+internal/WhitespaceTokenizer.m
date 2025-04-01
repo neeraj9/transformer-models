@@ -1,4 +1,4 @@
-classdef WhitespaceTokenizer < bert.tokenizer.internal.Tokenizer
+classdef WhitespaceTokenizer < bertv2.tokenizer.internal.Tokenizer
     % WhitespaceTokenizer   The simplest type of tokenization, split on
     % whitespace characters.
     

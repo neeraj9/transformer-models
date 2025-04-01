@@ -71,7 +71,7 @@ hyperparameters = parameters.Hyperparameters;
 if isempty(nvp.InputMask)
     inputMask = x~=nvp.PaddingCode;
 else
-    assert(isequal(size(nvp.InputMask),size(x)),"bert:model:InvalidMaskSize","Expected InputMask to have same size as input X.");
+    assert(isequal(size(nvp.InputMask),size(x)),"bertv2:model:InvalidMaskSize","Expected InputMask to have same size as input X.");
     inputMask = logical(nvp.InputMask);
 end
 
@@ -80,15 +80,15 @@ xsz = size(x);
 seq_len = xsz(2);
 
 % Apply embeddings
-types = dlarray(bert.internal.inferTypeID(x,nvp.SeparatorCode));
+types = dlarray(bertv2.internal.inferTypeID(x,nvp.SeparatorCode));
 positions = dlarray(1:seq_len);
-z = bert.layer.embedding(x,types,positions,w.embeddings,nvp.DropoutProb);
+z = bertv2.layer.embedding(x,types,positions,w.embeddings,nvp.DropoutProb);
 
 % Transformer layers
 num_layers = min(hyperparameters.NumLayers,maxLayer);
 varargout = cell(numel(nvp.Outputs),1);
 for i = 1:num_layers
-    z = bert.layer.block(z,w.encoder_layers.("layer_"+i),hyperparameters,'InputMask',inputMask);
+    z = bertv2.layer.block(z,w.encoder_layers.("layer_"+i),hyperparameters,'InputMask',inputMask);
     toAssign = nvp.Outputs==i;
     varargout(toAssign) = repelem({z},sum(toAssign));
 end

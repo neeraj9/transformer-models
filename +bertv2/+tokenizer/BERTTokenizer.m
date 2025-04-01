@@ -38,7 +38,7 @@ classdef BERTTokenizer
     %     decode       - Decode an encoded sequence to string
     %
     % Example:
-    %   tokenizer = bert.tokenizer.BERTTokenizer();
+    %   tokenizer = bertv2.tokenizer.BERTTokenizer();
     %   sequences = tokenizer.encode("Hello World!")
     
     % Copyright 2021-2023 The MathWorks, Inc.
@@ -99,18 +99,18 @@ classdef BERTTokenizer
             %     decode       - Decode an encoded sequence to string
             %
             % Example:
-            %   tokenizer = bert.tokenizer.BERTTokenizer();
+            %   tokenizer = bertv2.tokenizer.BERTTokenizer();
             %   sequences = tokenizer.encode("Hello World!")
             arguments
-                vocabFile (1,1) string {mustBeFile} = bert.internal.getSupportFilePath("base","vocab.txt")
+                vocabFile (1,1) string {mustBeFile} = bertv2.internal.getSupportFilePath("base","vocab.txt")
                 nvp.IgnoreCase (1,1) logical = true
                 nvp.FullTokenizer = []
             end
             if isempty(nvp.FullTokenizer)
                 ignoreCase = nvp.IgnoreCase;
-                this.FullTokenizer = bert.tokenizer.internal.FullTokenizer(vocabFile,'IgnoreCase',ignoreCase);
+                this.FullTokenizer = bertv2.tokenizer.internal.FullTokenizer(vocabFile,'IgnoreCase',ignoreCase);
             else
-                mustBeA(nvp.FullTokenizer,'bert.tokenizer.internal.FullTokenizer');
+                mustBeA(nvp.FullTokenizer,'bertv2.tokenizer.internal.FullTokenizer');
                 this.FullTokenizer = nvp.FullTokenizer;
             end
             this.PaddingCode = this.FullTokenizer.encode(this.PaddingToken);
@@ -138,7 +138,7 @@ classdef BERTTokenizer
             %   text_a and text_b must have the same number of elements.
             %
             % Example:
-            %   tokenizer = bert.tokenizer.BERTTokenizer;
+            %   tokenizer = bertv2.tokenizer.BERTTokenizer;
             %   tokens = tokenizer.tokenize("Hello world!")
             arguments
                 this
@@ -146,7 +146,7 @@ classdef BERTTokenizer
                 text_b string = string.empty()
             end
             if ~isempty(text_b) && numel(text_a)~=numel(text_b)
-                error("bert:tokenizer:SentencePairNumelMismatch","For sentence-pairs, both inputs must have the same number of elements");
+                error("bertv2:tokenizer:SentencePairNumelMismatch","For sentence-pairs, both inputs must have the same number of elements");
             end
             inputShape = size(text_a);
             text_a = reshape(text_a,[],1);
@@ -171,7 +171,7 @@ classdef BERTTokenizer
             %   equivalent to encode(bertTokenizer,text).
             %
             % Example:
-            %   tokenizer = bert.tokenizer.BERTTokenizer;
+            %   tokenizer = bertv2.tokenizer.BERTTokenizer;
             %   tokens = tokenizer.tokenize("Hello world!");
             %   sequences = tokenizer.encodeTokens(tokens)
             x = cellfun(@(tokens) this.FullTokenizer.encode(tokens), toks, 'UniformOutput', false);
@@ -193,7 +193,7 @@ classdef BERTTokenizer
             %   elements.
             %
             % Example:
-            %   tokenizer = bert.tokenizer.BERTTokenizer;
+            %   tokenizer = bertv2.tokenizer.BERTTokenizer;
             %   sequences = tokenizer.encode(["Hello world!"; ...
             %   "I am a model."])
             arguments
@@ -202,7 +202,7 @@ classdef BERTTokenizer
                 text_b string = string.empty()
             end
             if ~isempty(text_b) && numel(text_a)~=numel(text_b)
-                error("bert:tokenizer:SentencePairNumelMismatch","For sentence-pairs, both inputs must have the same number of elements");
+                error("bertv2:tokenizer:SentencePairNumelMismatch","For sentence-pairs, both inputs must have the same number of elements");
             end
             tokens = this.tokenize(text_a,text_b);
             x = this.encodeTokens(tokens);
@@ -223,7 +223,7 @@ classdef BERTTokenizer
             %   encode is not inverted by the decode method.
             %
             % Example:
-            %   tokenizer = bert.tokenizer.BERTTokenizer();
+            %   tokenizer = bertv2.tokenizer.BERTTokenizer();
             %   sequences = tokenizer.encode("Hello World!");
             %   decoded = tokenizer.decode(sequences)
             

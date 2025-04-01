@@ -7,10 +7,10 @@ function z = languageModelHead(z,p,word_embeddings)
 %   be an unformatted dlarray of size
 %   hiddenSize-by-numInputTokens-by-numObs. The languageModelWeights must
 %   be a struct with fields 'transform' and 'LayerNorm' such as the
-%   mdl.Parameters.Weights.masked_LM struct where mdl = bert(). The
-%   wordEmbeddingMatrix must be the word embedding matrix used by the bert
+%   mdl.Parameters.Weights.masked_LM struct where mdl = bertv2(). The
+%   wordEmbeddingMatrix must be the word embedding matrix used by the bertv2
 %   model such as mdl.Parameters.Weights.embeddings.word_embeddings where
-%   mdl = bert().
+%   mdl = bertv2().
 
 % Copyright 2021 The MathWorks, Inc.
 z = transformer.layer.convolution1d(z,p.transform.kernel,p.transform.bias);

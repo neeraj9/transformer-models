@@ -1,4 +1,4 @@
-classdef FullTokenizer < bert.tokenizer.internal.Tokenizer
+classdef FullTokenizer < bertv2.tokenizer.internal.Tokenizer
     % FullTokenizer   A tokenizer based on word-piece tokenization.
     %
     %   tokenizer = FullTokenizer(vocabFile) constructs a FullTokenizer
@@ -28,7 +28,7 @@ classdef FullTokenizer < bert.tokenizer.internal.Tokenizer
     %   ##cab
     %
     %   % Now create a FullTokenizer
-    %   tokenizer = bert.tokenizer.internal.FullTokenizer('fakeVocab.txt');
+    %   tokenizer = bertv2.tokenizer.internal.FullTokenizer('fakeVocab.txt');
     %   tokens = tokenizer.tokenize("This tokenizer has a fake vocab")
     %   % Note that most tokens are unknown as they are not in the
     %   % vocabulary and neither are any sub-tokens. However "fake" is
@@ -76,7 +76,7 @@ classdef FullTokenizer < bert.tokenizer.internal.Tokenizer
             %   ##cab
             %
             %   % Now create a FullTokenizer
-            %   tokenizer = bert.tokenizer.internal.FullTokenizer('fakeVocab.txt');
+            %   tokenizer = bertv2.tokenizer.internal.FullTokenizer('fakeVocab.txt');
             %   tokens = tokenizer.tokenize("This tokenizer has a fake vocab")
             %   % Note that most tokens are unknown as they are not in the
             %   % vocabulary and neither are any sub-tokens. However "fake" is
@@ -91,12 +91,12 @@ classdef FullTokenizer < bert.tokenizer.internal.Tokenizer
             end
             if isempty(nvp.BasicTokenizer)
                 % Default case
-                this.Basic = bert.tokenizer.internal.BasicTokenizer('IgnoreCase',nvp.IgnoreCase);
+                this.Basic = bertv2.tokenizer.internal.BasicTokenizer('IgnoreCase',nvp.IgnoreCase);
             else
-                mustBeA(nvp.BasicTokenizer,'bert.tokenizer.internal.Tokenizer');
+                mustBeA(nvp.BasicTokenizer,'bertv2.tokenizer.internal.Tokenizer');
                 this.Basic = nvp.BasicTokenizer;
             end
-            this.WordPiece = bert.tokenizer.internal.WordPieceTokenizer(vocab);
+            this.WordPiece = bertv2.tokenizer.internal.WordPieceTokenizer(vocab);
             this.Encoding = this.WordPiece.Vocab;
         end
         

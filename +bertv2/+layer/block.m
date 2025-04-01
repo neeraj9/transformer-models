@@ -5,7 +5,7 @@ function z = block(z,weights,hyperParameters,nvp)
 %   transformer block on the input X as described in [1]. Here X is a
 %   (numFeatures*numHeads)-by-numInputSubwords array. The weights and
 %   hyperParameters must be structs in the same format as returned by the
-%   bert() function.
+%   bertv2() function.
 %
 %   Z = block(X,weights,hyperParameters,'PARAM1',VAL1,'PARAM2',VAL2)
 %   specifies the optional parameter name/value pairs:

@@ -1,4 +1,4 @@
-classdef WordPieceTokenizer < bert.tokenizer.internal.Tokenizer
+classdef WordPieceTokenizer < bertv2.tokenizer.internal.Tokenizer
     % WordPieceTokenizer   Constructs a Word Piece Tokenizer from a given
     %   vocab.txt file.
     
@@ -11,7 +11,7 @@ classdef WordPieceTokenizer < bert.tokenizer.internal.Tokenizer
     end
     
     properties(Constant,Access=private)
-        WhitespaceTokenizer = bert.tokenizer.internal.WhitespaceTokenizer()
+        WhitespaceTokenizer = bertv2.tokenizer.internal.WhitespaceTokenizer()
     end
     
     methods

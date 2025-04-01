@@ -1,4 +1,4 @@
-classdef TokenizedDocumentTokenizer < bert.tokenizer.internal.Tokenizer
+classdef TokenizedDocumentTokenizer < bertv2.tokenizer.internal.Tokenizer
     % TokenizedDocumentTokenizer   Implements a word-level tokenizer using
     % tokenizedDocument. 
 
